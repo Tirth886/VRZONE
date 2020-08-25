@@ -46,7 +46,6 @@ $(document).ready(() => {
 		element: function (file, count) {
 
 			return `<tr align="center" id=${file.id}>
-	     				<td><input class="selectfile" type="checkbox" name=""></td>
 	     				<td>${count}</td>
 	     				<td align="left">${file.name.toUpperCase()}</td>
 	     				<td>${file.type.toUpperCase()}</td>

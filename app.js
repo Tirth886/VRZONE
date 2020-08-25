@@ -23,10 +23,8 @@ class Pages {
             slashes: true
         }));
     }
-    
 }
 const pge = new Pages();
-
 function openMainWindow(){
     function setting(f){
         return {
@@ -52,6 +50,7 @@ function openMainWindow(){
     globalShortcut.register('e', () => {
         mainWindow.webContents.send("test_process",{"status":true})
     })
+
 }
 if (!gotTheLock) {
     app.quit();
@@ -62,11 +61,9 @@ if (!gotTheLock) {
             openMainWindow()
         }
     })   
-    // app.whenReady().then(() => {
-    //     globalShortcut.register('e', () => {
-    //         console.log('e')
-    //     })
-    // })
+    app.on("before-quit", () => {
+        globalShortcut.unregister("e");
+    })
     app.on('window-all-closed', () => {
         app.quit()
     })   
