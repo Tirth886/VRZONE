@@ -242,7 +242,7 @@ $(document).ready(() => {
 			dom.total.html(count);
 		},
 		sendFiles: function (e) {
-			
+
 			let files = e.target.files;
 			let path = files[0].webkitRelativePath;
 			let tbkey = e.target.dataset.var ? e.target.dataset.var : "5D";
@@ -298,6 +298,7 @@ $(document).ready(() => {
 		} else if ($("div#5d-container").find("table tbody tr").length < 1) {
 			utilites.getelement("5D").append(utilites.message("No PlayList Yet"));
 		}
+		
 	});
 	dom.vr.on("click", datatable.choosecatagory);
 });

@@ -50,7 +50,6 @@ function openMainWindow(){
     globalShortcut.register('e', () => {
         mainWindow.webContents.send("test_process",{"status":true})
     })
-
 }
 if (!gotTheLock) {
     app.quit();
@@ -60,7 +59,7 @@ if (!gotTheLock) {
         if (mainWindow === null) {
             openMainWindow()
         }
-    })   
+    })
     app.on("before-quit", () => {
         globalShortcut.unregister("e");
     })
