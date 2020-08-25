@@ -242,9 +242,10 @@ $(document).ready(() => {
 			dom.total.html(count);
 		},
 		sendFiles: function (e) {
+			
 			let files = e.target.files;
 			let path = files[0].webkitRelativePath;
-			let tbkey = e.target.dataset.var ? e.target.dataset.var : "9D";
+			let tbkey = e.target.dataset.var ? e.target.dataset.var : "5D";
 			let table = this.table(path, tbkey);
 
 			return {
