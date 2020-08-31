@@ -233,6 +233,7 @@ $(document).ready(() => {
 			console.log(e)
 		},
 		addFiles: function (e) {
+			
 			e.preventDefault();
 			let info = datatable.sendFiles(e);
 			let table = info.table;
@@ -242,12 +243,10 @@ $(document).ready(() => {
 			dom.total.html(count);
 		},
 		sendFiles: function (e) {
-
 			let files = e.target.files;
 			let path = files[0].webkitRelativePath;
 			let tbkey = e.target.dataset.var ? e.target.dataset.var : "5D";
 			let table = this.table(path, tbkey);
-
 			return {
 				"table": table,
 				"files": files,
@@ -292,7 +291,7 @@ $(document).ready(() => {
 			}
 		})
 		fileslist = $getitems
-		// console.log(fileslist)
+	
 		if ($("div#9D-container").find("table tbody tr").length < 1) {
 			utilites.getelement("9D").append(utilites.message("No PlayList Yet"));
 		} else if ($("div#5d-container").find("table tbody tr").length < 1) {

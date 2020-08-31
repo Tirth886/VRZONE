@@ -1,24 +1,24 @@
-$(document).ready(() => { 
-	const {remote} = require("electron");   
-	const execSync = require('child_process').execSync;
-	let file = JSON.parse(localStorage.getItem("fileevent"));
-	
-	let setting_ = JSON.parse(localStorage.getItem("setting"));
+$(document).ready(() => {
+    const { remote } = require("electron");
+    const execSync = require('child_process').execSync;
+    let file = JSON.parse(localStorage.getItem("fileevent"));
 
-	const playvideo= {
-		openMediaPlayer : function(url){
-			execSync('@echo off', { encoding: 'utf-8' });
-	        execSync(`"${setting_.folder}" "${typeof url === "object" ? url.target.dataset.url : url}"` , { encoding: 'utf-8' });
-	        execSync('exit', { encoding: 'utf-8' });
-		},
-		
-		fileExecuteExe : function(url){
-			execSync('@echo off', { encoding: 'utf-8' });
-	        execSync(`start /b "" "${url}"` , { encoding: 'utf-8' });
-	        execSync('exit', { encoding: 'utf-8' });
-		}
-	}
-	// function closeWindow(player,time){
+    let setting_ = JSON.parse(localStorage.getItem("setting"));
+
+    const playvideo = {
+        openMediaPlayer: function (url) {
+            execSync('@echo off', { encoding: 'utf-8' });
+            execSync(`"${setting_.folder}" "${typeof url === "object" ? url.target.dataset.url : url}"`, { encoding: 'utf-8' });
+            execSync('exit', { encoding: 'utf-8' });
+        },
+
+        fileExecuteExe: function (url) {
+            execSync('@echo off', { encoding: 'utf-8' });
+            execSync(`start /b "" "${url}"`, { encoding: 'utf-8' });
+            execSync('exit', { encoding: 'utf-8' });
+        }
+    }
+    // function closeWindow(player,time){
     //     let mili = time*60000
     //     console.log(mili)
     //     setTimeout(() => {
@@ -28,7 +28,7 @@ $(document).ready(() => {
     //         openwindow.playvideo.name.close()}catch(e){
     //             let fileevent = JSON.parse(localStorage.getItem("fileevent"))
     //             let filename = fileevent.name
-                
+
     //             execSync('@echo off', { encoding: 'utf-8' });
     //             execSync("C:\/Windows\/System32\/taskkill.exe /im "+filename+".exe /f" , { encoding: 'utf-8' });
     //             execSync('pause', { encoding: 'utf-8' });
@@ -37,19 +37,19 @@ $(document).ready(() => {
     //     },mili)
     //     return false;
     // }
-	if (file.event && file.player != "") {
-		playvideo.openMediaPlayer(file.event)
-		remote.getCurrentWindow().close()
-	}else if (file.event && file.player == ""){
-		
-		playvideo.fileExecuteExe(file.event)
-		remote.getCurrentWindow().close()
-	}
-	else{
-		throw new TypeError("File not Found")
-	}
+    if (file.event && file.player != "") {
+        playvideo.openMediaPlayer(file.event)
+        remote.getCurrentWindow().close()
+    } else if (file.event && file.player == "") {
 
-	// function closeWindow(player,time){
+        playvideo.fileExecuteExe(file.event)
+        remote.getCurrentWindow().close()
+    }
+    else {
+        throw new TypeError("File not Found")
+    }
+
+    // function closeWindow(player,time){
     //     let mili = time*60000
     //     console.log(mili)
     //     setTimeout(() => {
@@ -59,7 +59,7 @@ $(document).ready(() => {
     //         openwindow.playvideo.name.close()}catch(e){
     //             let fileevent = JSON.parse(localStorage.getItem("fileevent"))
     //             let filename = fileevent.name
-                
+
     //             execSync('@echo off', { encoding: 'utf-8' });
     //             execSync("C:\/Windows\/System32\/taskkill.exe /im "+filename+".exe /f" , { encoding: 'utf-8' });
     //             execSync('pause', { encoding: 'utf-8' });
@@ -69,7 +69,7 @@ $(document).ready(() => {
     //     return false;
     // }
 
-	// $(document).keypress(function(event){
+    // $(document).keypress(function(event){
     //     if (String.fromCharCode(event.which).toUpperCase() == "E") {
     //         let setting_ = JSON.parse(localStorage.getItem("setting")); 
     //         closeWindow(setting_.myplayer, 0);
