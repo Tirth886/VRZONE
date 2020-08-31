@@ -22,7 +22,6 @@ $(document).ready(() => {
             } catch (e) {
                 let fileevent = JSON.parse(localStorage.getItem("fileevent"))
                 let filename = fileevent.name
-
                 if (filename != "undefined") {
                     try {
                         execSync('@echo off', { encoding: 'utf-8' });
@@ -265,7 +264,7 @@ $(document).ready(() => {
     })
     dom.stop.on("click", () => {
         let setting_ = JSON.parse(localStorage.getItem("setting"));
-        closeWindow(setting_.myplayer, 0);
+        closeWindow(setting_.myplayer, 0,TIMEOUT);
     });
 
 
