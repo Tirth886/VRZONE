@@ -5,9 +5,11 @@ $(document).ready(() => {
     const path = require('path');
     const fs = require('fs');
     const url = require('url');
+    const os = require('os')
     const execSync = require('child_process').execSync;
 
     let setting_ = JSON.parse(localStorage.getItem("setting"));
+
     function closeWindow(player, time, timeout = '') {
         let mili = time * 60000
         if (timeout != "") {
@@ -30,7 +32,7 @@ $(document).ready(() => {
                         openwindow.playvideo.name.close()
                     } catch (e) {
                         execSync('@echo off', { encoding: 'utf-8' });
-                        execSync("C:\/Windows\/System32\/taskkill.exe /im Unreal Engine.exe /f", { encoding: 'utf-8' });
+                        execSync("C:\/Windows\/System32\/taskkill.exe /im " + filename + ".exe /t", { encoding: 'utf-8' });
                         execSync('pause', { encoding: 'utf-8' });
                         openwindow.playvideo.name.close()
                     }
@@ -40,25 +42,23 @@ $(document).ready(() => {
     }
 
     const utilites = {
-        selector: function (args) {
+        selector: function(args) {
             return {
                 "status": true,
                 "statement": {
                     "selector": typeof args === "object" ?
-                        "." :
-                        "#",
+                        "." : "#",
                     "name": typeof args === "object" ?
-                        args[0] :
-                        args,
+                        args[0] : args,
                 }
             }
         },
-        openMediaPlayer: function (url) {
+        openMediaPlayer: function(url) {
             execSync('@echo off', { encoding: 'utf-8' });
             execSync(`"c:\/Program Files (x86)\/Stereoscopic Player\/StereoPlayer.exe" "${typeof url === "object" ? url.target.dataset.url : url}"`, { encoding: 'utf-8' });
             execSync('exit', { encoding: 'utf-8' });
         },
-        games_show: function (cat) {
+        games_show: function(cat) {
             let parse = JSON.parse(this.getCookie());
             if (parse != null) {
                 let list = parse[cat].length > 0 ? parse[cat] : null;
@@ -71,7 +71,7 @@ $(document).ready(() => {
                 }
             }
         },
-        choosecatagory: function (e) {
+        choosecatagory: function(e) {
             let visible = e.target.dataset.enable;
             let disable = e.target.dataset.disable;
             let listing = e.target.innerText;
@@ -89,7 +89,7 @@ $(document).ready(() => {
 
             utilites.games_show(listing);
         },
-        getelement: function (args) {
+        getelement: function(args) {
             let statement = this.selector(args);
             if (statement.status) {
                 try {
@@ -100,19 +100,19 @@ $(document).ready(() => {
                 }
             }
         },
-        getCookie: function () {
+        getCookie: function() {
             return localStorage.getItem('file');
         },
-        setCookie: function (args) {
+        setCookie: function(args) {
             localStorage.setItem('execute', JSON.stringify({ url: args }));
         },
-        element: function (args) {
+        element: function(args) {
             return `<div class="list-games game-list-setting" data-name="${args.name}" data-url="${args.file}" >
                     <img src="${args.img}" data-url="${args.file}" height="150px" width="134px" altr="${args.name}" style="z-index:-1;">
                     <span style="z-index:-1;" data-url="${args.file}"></span>    
                     </div>`;
         },
-        message: function (args) {
+        message: function(args) {
             // return `<div class="list-games" data-url="">
             //                ${args}
             //        </div>`;
@@ -143,7 +143,7 @@ $(document).ready(() => {
     };
 
     const window_ = {
-        setting: function (args) {
+        setting: function(args) {
             return {
                 height: args.height,
                 width: args.width,
@@ -157,7 +157,7 @@ $(document).ready(() => {
                 webPreferences: { nodeIntegration: true }
             }
         },
-        pathurl: function (args) {
+        pathurl: function(args) {
             return {
                 pathname: path.join(__dirname, "views", `${args.file_name}`),
                 protocol: 'file:',
@@ -167,19 +167,19 @@ $(document).ready(() => {
     };
 
     const window_option = {
-        cretingenviroment: function (args) {
+        cretingenviroment: function(args) {
             args.name = new BrowserWindow(window_.setting({ height: args.height, width: args.width, visible: args.visible }));
             args.name.loadURL(url.format(window_.pathurl({ file_name: `${args.file_name}` })));
             args.name.removeMenu();
             // args.name.openDevTools();
         },
-        playlist: function (args) {
+        playlist: function(args) {
             this.cretingenviroment(args.playlist);
         },
-        setting: function (args) {
+        setting: function(args) {
             this.cretingenviroment(args.setting);
         },
-        playvideo: function (args) {
+        playvideo: function(args) {
             this.cretingenviroment(args.playvideo);
         },
     };
@@ -213,7 +213,7 @@ $(document).ready(() => {
         // btnn     : utilites.getelement("login"),
         // lgnb     : utilites.getelement("loginblock"),
         game: utilites.getelement("games")
-        // list     : utilites.getelement(["list-games"])
+            // list     : utilites.getelement(["list-games"])
     }
 
     dom.playlist.on("click", (e) => {
@@ -232,7 +232,7 @@ $(document).ready(() => {
 
     dom.vr.on("click", utilites.choosecatagory);
 
-    $(document).on("click", ".list-games", function (e) {
+    $(document).on("click", ".list-games", function(e) {
         let setting_ = JSON.parse(localStorage.getItem("setting"));
 
         let url = $(this).data("url");
@@ -264,12 +264,12 @@ $(document).ready(() => {
     })
     dom.stop.on("click", () => {
         let setting_ = JSON.parse(localStorage.getItem("setting"));
-        closeWindow(setting_.myplayer, 0,TIMEOUT);
+        closeWindow(setting_.myplayer, 0, TIMEOUT);
     });
 
 
 
-    $(document).keypress(function (event) {
+    $(document).keypress(function(event) {
         if (String.fromCharCode(event.which).toUpperCase() == "E") {
             let setting_ = JSON.parse(localStorage.getItem("setting"));
             closeWindow(setting_.myplayer, 0);
