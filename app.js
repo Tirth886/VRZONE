@@ -40,7 +40,6 @@ function home() {
     globalShortcut.register('e', () => {
         mainWindow.webContents.send("test_process", { "status": true })
     })
-
 }
 
 function setting(f) {

@@ -280,4 +280,58 @@ $(document).ready(() => {
         let setting_ = JSON.parse(localStorage.getItem("setting"));
         closeWindow(setting_.myplayer, 0, TIMEOUT);
     })
+    var getRandomIntInclusive = function(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 
+    }
+
+    var setBubble = function(num) {
+        var element = document.getElementById("bg");
+        var radius = 40;
+
+        function setBubbleParams(bubble, bubbleWrap) {
+            var deg = getRandomIntInclusive(0, 360);
+            bubbleWrap.style.transform = 'rotate(' + deg + 'deg)';
+
+            var hue = getRandomIntInclusive(0, 360);
+            bubble.style.background = "hsl(" + hue + ",80%, 70%)";
+            bubble.style.boxShadow = "0px 0px 5px 3px hsl(" + hue + ",80%, 70%)";
+            bubble.style.opacity = 0;
+
+            return bubble, bubbleWrap;
+        }
+
+        for (i = 0; i < num; i++) {
+            var color = Math.floor(Math.random() * 10000);
+            var bubble = document.createElement("div");
+            var bubbleWrap = document.createElement("div");
+            bubble.className = "circle " + "circle" + i;
+            bubbleWrap.className = "circleWrap " + "circleWrap" + i;
+            element.appendChild(bubbleWrap);
+            bubbleWrap.appendChild(bubble);
+
+            setBubbleParams(bubble, bubbleWrap);
+
+            gsap.to(bubble, {
+                delay: Math.random() * 4 + 1,
+                x: 500,
+                width: radius,
+                height: radius,
+                alpha: 1,
+                repeat: -1,
+                duration: Math.random() * 4 + 1,
+                ease: "slow(0.7, 0.7, false)",
+
+                onRepeat: function(b, w) {
+                    setBubbleParams(b, w);
+
+
+                },
+                onRepeatParams: [bubble, bubbleWrap]
+            });
+        }
+    }
+
+    setBubble(getRandomIntInclusive(10, 5));
 });
