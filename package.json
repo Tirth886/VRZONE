@@ -1,43 +1,43 @@
 {
-  "name": "vrzone",
-  "version": "1.0.0",
-  "description": "Game Operating Software",
-  "main": "app.js",
-  "scripts": {
-    "postinstall": "electron-builder install-app-deps",
-    "start": "electron .",
-    "dist": "electron-builder"
-  },
-  "author": "codexsite",
-  "license": "ISC",
-  "private": true,
-  "build": {
-    "appId": "vrzone.vrzone",
-    "files": [
-      "!publisher.json",
-      "!updates.json"
-    ],
-    "win": {
-      "asar": true,
-      "target": [
-        "nsis"
-      ],
-      "icon": "./app/media/logo.png"
+    "name": "vrzone",
+    "version": "1.3.0",
+    "description": "Game Operating Software",
+    "main": "app.js",
+    "scripts": {
+        "postinstall": "electron-builder install-app-deps",
+        "start": "electron .",
+        "dist": "electron-builder"
+    },
+    "author": "codexsite",
+    "license": "ISC",
+    "private": true,
+    "build": {
+        "appId": "app.vrzone.vrzone",
+        "files": [
+            "!publisher.json",
+            "!updates.json"
+        ],
+        "win": {
+            "asar": true,
+            "target": [
+                "nsis"
+            ],
+            "icon": "./app/media/logo.png"
+        }
+    },
+    "squirrelWindows": {
+        "iconUrl": "app/media/logo.png"
+    },
+    "engines": {
+        "node": ">=6.0"
+    },
+    "devDependencies": {
+        "electron": "*",
+        "electron-builder": "^22.7.0",
+        "electron-builder-squirrel-windows": "^22.5.0",
+        "electron-packager": "^14.2.1"
+    },
+    "dependencies": {
+        "child_process": "^1.0.2"
     }
-  },
-  "squirrelWindows": {
-    "iconUrl": "app/media/logo.png"
-  },
-  "engines": {
-    "node": ">=6.0"
-  },
-  "devDependencies": {
-    "electron": "*",
-    "electron-builder": "^22.7.0",
-    "electron-builder-squirrel-windows": "^22.5.0",
-    "electron-packager": "^14.2.1"
-  },
-  "dependencies": {
-    "child_process": "^1.0.2"
-  }
 }

@@ -108,7 +108,7 @@ $(document).ready(() => {
         },
         element: function(args) {
             return `<div class="list-games game-list-setting" data-name="${args.name}" data-url="${args.file}" >
-                    <img src="${args.img}" data-url="${args.file}" height="150px" width="134px" altr="${args.name}" style="z-index:-1;">
+                    <img src="${args.img}" data-url="${args.file}" height="150px" width="150px" altr="${args.name}" style="z-index:-1;">
                     <span style="z-index:-1;" data-url="${args.file}"></span>    
                     </div>`;
         },

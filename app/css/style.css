@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-image: linear-gradient(60deg, #06ec6d 10%, #2bd87398 50%, #d8cc2b98 40%);
+    background-image: linear-gradient(60deg, #06ec6d 10%, #0ff06d98 50%, #d8cc2b8a 40%);
     padding: 0px;
     margin: 0;
     overflow: hidden;
@@ -35,8 +35,8 @@ h1 {
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, .85);
-    filter: drop-shadow(0px 0px 2.5px blue);
+    border: 2px solid rgba(255, 255, 255, 0);
+    filter: drop-shadow(0px 0px 2.5px rgba(0, 0, 255, 0)23, 23, 173));
     position: relative;
 }
 
@@ -48,12 +48,12 @@ h1 {
     left: 0;
     height: 100%;
     width: 100%;
-    background: radial-gradient(95px, rgba(0, 0, 255, .1), transparent);
+    background: radial-gradient(95px, rgba(255, 255, 255, 0.1), transparent);
     border-radius: 50%;
 }
 
 .ring {
-    border: 10px solid white;
+    border: 10px solid rgb(102, 207, 111);
     height: 60%;
     width: 60%;
     margin: 0;
@@ -1346,8 +1346,8 @@ div.vr:active {
 }
 
 div.list-games.game-list-setting {
-    height: 100px !important;
-    width: 100px;
+    height: 150px !important;
+    width: 150px;
     background: none;
     padding: 0.5rem;
 }
