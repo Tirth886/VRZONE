@@ -1346,8 +1346,8 @@ div.vr:active {
 }
 
 div.list-games.game-list-setting {
-    height: 150px !important;
-    width: 150px;
+    height: 130px !important;
+    width: 130px;
     background: none;
     padding: 0.5rem;
 }
